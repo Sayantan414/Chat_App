@@ -117,8 +117,8 @@ class _IndividualPageState extends State<IndividualPage> {
                         Container(
                             width: MediaQuery.of(context).size.width - 55,
                             child: Card(
-                              margin:
-                                  EdgeInsets.only(left: 2, right: 2, bottom: 8),
+                              margin: const EdgeInsets.only(
+                                  left: 2, right: 2, bottom: 8),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
@@ -148,7 +148,14 @@ class _IndividualPageState extends State<IndividualPage> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              builder: (builder) =>
+                                                  bottomSheet());
+                                        },
                                         icon: const Icon(Icons.attach_file),
                                         color: const Color.fromARGB(
                                             255, 6, 100, 178),
@@ -183,6 +190,79 @@ class _IndividualPageState extends State<IndividualPage> {
                 ))
           ],
         ),
+      ),
+    );
+  }
+
+  Widget bottomSheet() {
+    return Container(
+        height: 278,
+        width: MediaQuery.of(context).size.width,
+        child: Card(
+            margin: const EdgeInsets.all(18),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      iconCreation(
+                          Icons.insert_drive_file, Colors.indigo, "Document"),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      iconCreation(Icons.camera_alt, Colors.pink, "Camera"),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      iconCreation(Icons.insert_photo, Colors.purple, "Gallery")
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      iconCreation(Icons.headset, Colors.orange, "Audio"),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      iconCreation(Icons.location_pin, Colors.teal, "Location"),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      iconCreation(Icons.person, Colors.blue, "Contact")
+                    ],
+                  ),
+                ],
+              ),
+            )));
+  }
+
+  Widget iconCreation(IconData icon, Color color, String text) {
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: color,
+            child: Icon(
+              icon,
+              size: 29,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            text,
+            style: const TextStyle(fontSize: 12),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:chat_frontend/CustomUI/CustomCard.dart';
 import 'package:chat_frontend/Models/ChatModel.dart';
+import 'package:chat_frontend/Screens/SelectContact.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
@@ -18,36 +19,44 @@ class _ChatPageState extends State<ChatPage> {
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
-          currentMessage: "Hi Guys"),
+          currentMessage: "Hi Guys",
+          status: "A developer"),
       ChatModel(
           name: "Deep",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
-          currentMessage: "Hi Bro"),
+          currentMessage: "Hi Bro",
+          status: "A developer"),
       ChatModel(
           name: "Sayan",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
-          currentMessage: "Hi Sis"),
+          currentMessage: "Hi Sis",
+          status: "A developer"),
       ChatModel(
           name: "Family Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
-          currentMessage: "Hi Everyone"),
+          currentMessage: "Hi Everyone",
+          status: "A developer"),
       ChatModel(
           name: "Friends Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
-          currentMessage: "Hi Everyone")
+          currentMessage: "Hi Everyone",
+          status: "A developer")
     ];
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (builder) => SelectContact()));
+        },
         child: const Icon(Icons.chat),
       ),
       body: ListView.builder(
