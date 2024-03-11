@@ -1,6 +1,7 @@
 import 'package:chat_frontend/CustomUI/ButtonCard.dart';
 import 'package:chat_frontend/CustomUI/ContactCard.dart';
 import 'package:chat_frontend/Models/ChatModel.dart';
+import 'package:chat_frontend/Screens/CreateGroup.dart';
 import 'package:flutter/material.dart';
 
 class SelectContact extends StatefulWidget {
@@ -18,37 +19,41 @@ class _SelectContactState extends State<SelectContact> {
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Guys",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Deep",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Bro",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Sayan",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Sis",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Family Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
           currentMessage: "Hi Everyone",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Friends Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
           currentMessage: "Hi Everyone",
-          status: "A developer")
+          status: "A developer",
+          select: false)
     ];
-
     return Scaffold(
       appBar: AppBar(
         title: const Column(
@@ -92,7 +97,12 @@ class _SelectContactState extends State<SelectContact> {
           itemCount: contacts.length + 2,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return ButtonCard(name: "New group", icon: Icons.group);
+              return InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (builder) => CreateGroup()));
+                  },
+                  child: ButtonCard(name: "New group", icon: Icons.group));
             } else if (index == 1) {
               return ButtonCard(name: "New contact", icon: Icons.person_add);
             }

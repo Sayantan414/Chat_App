@@ -5,11 +5,13 @@ class ChatModel {
   String time;
   String currentMessage;
   String status;
+  bool select = false;
   ChatModel(
       {required this.name,
       required this.icon,
       required this.isGroup,
       required this.time,
       required this.currentMessage,
-      required this.status});
+      required this.status,
+      required this.select});
 }

@@ -20,35 +20,40 @@ class _ChatPageState extends State<ChatPage> {
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Guys",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Deep",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Bro",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Sayan",
           icon: "person.svg",
           isGroup: false,
           time: "4:00",
           currentMessage: "Hi Sis",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Family Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
           currentMessage: "Hi Everyone",
-          status: "A developer"),
+          status: "A developer",
+          select: false),
       ChatModel(
           name: "Friends Group",
           icon: "groups.svg",
           isGroup: true,
           time: "4:00",
           currentMessage: "Hi Everyone",
-          status: "A developer")
+          status: "A developer",
+          select: false)
     ];
 
     return Scaffold(
