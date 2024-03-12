@@ -1,7 +1,19 @@
+import 'package:camera/camera.dart';
+import 'package:chat_frontend/Screens/CameraScreen.dart';
 import 'package:chat_frontend/Screens/Homescreen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    // Fetch available cameras
+    cameras = await availableCameras();
+  } catch (e) {
+    print('Error fetching cameras: $e');
+    return; // Exit the app if an error occurs
+  }
+
   runApp(const MyApp());
 }
 

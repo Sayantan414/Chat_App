@@ -31,17 +31,17 @@ class CustomCard extends StatelessWidget {
           ),
           title: Text(
             chatModel.name,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           subtitle: Row(
             children: [
-              Icon(Icons.done_all),
-              SizedBox(
+              const Icon(Icons.done_all),
+              const SizedBox(
                 width: 3,
               ),
               Text(
                 chatModel.currentMessage,
-                style: TextStyle(fontSize: 13),
+                style: const TextStyle(fontSize: 13),
               ),
             ],
           ),

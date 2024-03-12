@@ -1,5 +1,4 @@
 import 'package:chat_frontend/CustomUI/AvtarCard.dart';
-import 'package:chat_frontend/CustomUI/ButtonCard.dart';
 import 'package:chat_frontend/CustomUI/ContactCard.dart';
 import 'package:chat_frontend/Models/ChatModel.dart';
 import 'package:flutter/material.dart';
@@ -86,23 +85,28 @@ class _CreateGroupState extends State<CreateGroup> {
       body: Stack(
         children: [
           ListView.builder(
-              itemCount: contacts.length,
+              itemCount: contacts.length + 1,
               itemBuilder: (context, index) {
+                if (index == 0) {
+                  return Container(
+                    height: groups.length > 0 ? 90 : 10,
+                  );
+                }
                 return InkWell(
                     onTap: () {
-                      if (contacts[index].select == false) {
+                      if (contacts[index - 1].select == false) {
                         setState(() {
-                          contacts[index].select = true;
-                          groups.add(contacts[index]);
+                          contacts[index - 1].select = true;
+                          groups.add(contacts[index - 1]);
                         });
                       } else {
                         setState(() {
-                          contacts[index].select = false;
-                          groups.remove(contacts[index]);
+                          contacts[index - 1].select = false;
+                          groups.remove(contacts[index - 1]);
                         });
                       }
                     },
-                    child: ContactCard(contact: contacts[index]));
+                    child: ContactCard(contact: contacts[index - 1]));
               }),
           groups.isNotEmpty
               ? Column(
