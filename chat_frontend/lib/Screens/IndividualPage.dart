@@ -1,7 +1,10 @@
+import 'package:chat_frontend/CustomUI/OwnMessageCard.dart';
+import 'package:chat_frontend/CustomUI/ReplyCard.dart';
 import 'package:chat_frontend/Models/ChatModel.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class IndividualPage extends StatefulWidget {
   const IndividualPage({Key? key, required this.chatModel}) : super(key: key);
@@ -13,11 +16,13 @@ class IndividualPage extends StatefulWidget {
 class _IndividualPageState extends State<IndividualPage> {
   bool show = false;
   FocusNode focusNode = FocusNode();
+  late IO.Socket socket;
   TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    connect();
     focusNode.addListener(() {
       if (focusNode.hasFocus) {
         setState(() {
@@ -27,10 +32,20 @@ class _IndividualPageState extends State<IndividualPage> {
     });
   }
 
+  void connect() {
+    socket = IO.io("http://10.150.50.88:5000", <String, dynamic>{
+      "transports": ["websocket"],
+      "autoConnect": false,
+    });
+    socket.connect();
+    socket.emit("/test", "Hello world");
+    socket.onConnect((data) => print("Connected"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 158, 203, 239),
+      backgroundColor: Color.fromARGB(255, 199, 227, 245),
       appBar: AppBar(
         leadingWidth: 70,
         titleSpacing: 0,
@@ -106,7 +121,17 @@ class _IndividualPageState extends State<IndividualPage> {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [
-            ListView(),
+            ListView(
+              shrinkWrap: true,
+              children: const [
+                OwnMessageCard(),
+                ReplyCard(),
+                OwnMessageCard(),
+                ReplyCard(),
+                OwnMessageCard(),
+                ReplyCard()
+              ],
+            ),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
